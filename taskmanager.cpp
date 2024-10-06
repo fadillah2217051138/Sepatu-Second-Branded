@@ -2,7 +2,6 @@
 #include <cmath> 
 using namespace std;
 
-// Fungsi untuk menampilkan menu
 void displayMenu() {
     cout << "\n--- Menu Pilihan ---" << endl;
     cout << "1. Konversi Suhu (Celcius ke Fahrenheit)" << endl;
