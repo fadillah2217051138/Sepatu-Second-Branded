@@ -2,11 +2,20 @@
 #include <cmath> 
 using namespace std;
 
-void displayMenu() {
-    cout << "\n--- Menu Pilihan ---" << endl;
-    cout << "1. Konversi Suhu (Celcius ke Fahrenheit)" << endl;
-    cout << "2. Hitung Luas Lingkaran" << endl;
-    cout << "3. Hitung Faktorial" << endl;
-    cout << "4. Hitung Bilangan Fibonacci" << endl;
-    cout << "5. Keluar" << endl;
+struct shoe{
+    string name;
+    int price;
+    int stock;
+}
+
+void displayShoes(Shoe, Shoes[],int size){
+    cout << "\n--- Daftar Sepatu dan Stok ---" << endl;
+    cout << setw(5) << left << "No" << setw(20) << left << "Nama Sepatu" 
+         << setw(10) << left << "Harga" << setw(10) << left << "Stok" << endl;
+    for (int i = 0; i < size; i++) {
+        cout << setw(5) << left << i + 1 << setw(20) << left << shoes[i].name 
+             << "Rp " << setw(10) << left << shoes[i].price 
+             << setw(10) << left << shoes[i].stock << endl;
+    }
+    cout << "0. Selesai dan Hitung Total" << endl;    
 }
