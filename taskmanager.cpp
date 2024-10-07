@@ -1,14 +1,14 @@
 #include <iostream>
-#include <cmath> 
+#include <iomanip>
 using namespace std;
 
-struct shoe{
+struct Shoe{
     string name;
     int price;
     int stock;
-}
+};
 
-void displayShoes(Shoe, Shoes[],int size){
+void displayShoes(Shoe shoes[],int size){
     cout << "\n--- Daftar Sepatu dan Stok ---" << endl;
     cout << setw(5) << left << "No" << setw(20) << left << "Nama Sepatu" 
          << setw(10) << left << "Harga" << setw(10) << left << "Stok" << endl;
@@ -65,5 +65,67 @@ for (int i = 0; i < itemCount; i++) {
         cout << "Uang tidak cukup!" << endl;
     }
 }
+
+
+int main() {
+    // Daftar sepatu dengan stok
+    const int SHOE_SIZE = 5;
+    Shoe shoes[SHOE_SIZE] = {
+        {"Nike Air Max", 750000, 10},
+        {"Adidas Ultraboost", 850000, 8},
+        {"Puma Running", 600000, 5},
+        {"Vans Old Skool", 550000, 12},
+        {"Converse Chuck Taylor", 500000, 7}
+    };
+
+    int itemIndex[SHOE_SIZE]; // Menyimpan indeks sepatu yang dibeli
+    int quantity[SHOE_SIZE];  // Menyimpan jumlah pembelian setiap sepatu
+    int itemCount = 0;        // Jumlah total item yang dibeli
+
+    while (true) {
+        displayShoes(shoes, SHOE_SIZE);
+        
+        int choice;
+        cout << "\nPilih sepatu (0 untuk selesai): ";
+        cin >> choice;
+
+        if (choice == 0) {
+            break;
+        } else if (choice < 1 || choice > SHOE_SIZE) {
+            cout << "Pilihan tidak valid. Silakan coba lagi." << endl;
+            continue;
+        }
+
+        int qty;
+        cout << "Masukkan jumlah: ";
+        cin >> qty;
+
+        int index = choice - 1;
+
+        // Validasi stok
+        if (qty > shoes[index].stock) {
+            cout << "Maaf, stok tidak mencukupi. Stok tersedia: " << shoes[index].stock << endl;
+            continue;
+        }
+
+        // Update stok sepatu
+        shoes[index].stock -= qty;
+
+        // Simpan indeks dan jumlah sepatu yang dibeli
+        itemIndex[itemCount] = index;
+        quantity[itemCount] = qty;
+        itemCount++;
+    }
+// Jika ada sepatu yang dibeli, tampilkan struk
+    if (itemCount > 0) {
+        displayReceipt(shoes, itemIndex, quantity, itemCount);
+    } else {
+        cout << "Tidak ada sepatu yang dibeli." << endl;
+    }
+
+    cout << "Terima kasih telah berbelanja di toko sepatu kami!" << endl;
+    return 0;
+}
+
 
 
